@@ -1,6 +1,9 @@
 package camelcase;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,13 +13,13 @@ public class CamelCaseTest {
 	private CamelCaseSplitter ccs;
 	
 	@Before
-	private void init() {
-		css = new CamelCaseSpritter();
+	public void init() {
+		ccs = new CamelCaseSplitter();
 	}
 	
 	@Test
 	public void testStringSemMaiuscula() {
-		String str = "fulano";
-		assertEquals("fulano", css.split(str)); 		
+		List<String> strList = Arrays.asList("fulano");
+		assertEquals(strList, ccs.converterCamelCase("fulano")); 		
 	}
 }
