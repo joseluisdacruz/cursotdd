@@ -17,6 +17,6 @@ public class CamelCaseTest {
 	@Test
 	public void testStringSemMaiuscula() {
 		String str = "fulano";
-		
+		assertEquals("fulano", css.split(str)); 		
 	}
 }
