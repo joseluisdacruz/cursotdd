@@ -14,4 +14,10 @@ public class CamelCaseTest {
 		List<String> strList = Arrays.asList("fulano");
 		assertEquals(strList, CamelCaseSplitter.converterCamelCase("fulano")); 		
 	}
+	
+	@Test
+	public void testStringComMaiuscula() {
+		List<String> strList = Arrays.asList("nome");
+		assertEquals(strList, CamelCaseSplitter.converterCamelCase("Nome"));
+	}
 }
