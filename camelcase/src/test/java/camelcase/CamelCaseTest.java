@@ -20,4 +20,10 @@ public class CamelCaseTest {
 		List<String> strList = Arrays.asList("nome");
 		assertEquals(strList, CamelCaseSplitter.converterCamelCase("Nome"));
 	}
-}
+	
+	@Test
+	public void testSepararStringCamelCase() {
+		List<String> strList = Arrays.asList("nome", "completo");
+		assertEquals(strList, CamelCaseSplitter.converterCamelCase("nomeCompleto"));
+	}
+ }
