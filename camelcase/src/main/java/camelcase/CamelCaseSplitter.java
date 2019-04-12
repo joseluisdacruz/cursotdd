@@ -7,7 +7,7 @@ public class CamelCaseSplitter {
 
 	public static List<String> converterCamelCase(String string) {
 		List<String> retorno = new ArrayList<>();
-		retorno.add(string);
+		retorno.add(string.toLowerCase());
 		return retorno;
 	}
 
