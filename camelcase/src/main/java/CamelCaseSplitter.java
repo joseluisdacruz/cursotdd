@@ -1,12 +1,13 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CamelCaseSplitter {
 
 	public static List<String> converterCamelCase(String string) {
-		List<String> retorno = new ArrayList<>();
-		retorno.add(string.toLowerCase());
-		return retorno;
+		List<String> retorno = Arrays.asList(string.split("(?=[A-Z])"));
+		return retorno.stream()
+				.map(str -> str.toLowerCase()).collect(Collectors.toList());
 	}
 
 }
