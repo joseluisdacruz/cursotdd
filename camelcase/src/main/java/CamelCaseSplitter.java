@@ -1,5 +1,3 @@
-package camelcase;
-
 import java.util.ArrayList;
 import java.util.List;
 
