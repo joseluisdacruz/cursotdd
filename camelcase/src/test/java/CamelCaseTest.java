@@ -24,4 +24,10 @@ public class CamelCaseTest {
 		List<String> strList = Arrays.asList("nome", "completo");
 		assertEquals(strList, CamelCaseSplitter.converterCamelCase("nomeCompleto"));
 	}
+	
+	@Test
+	public void testSepararStringCamelCaseSigla() {
+		List<String> strList = Arrays.asList("nome", "completo", "ABC");
+		assertEquals(strList, CamelCaseSplitter.converterCamelCase("nomeCompletoABC"));
+	}
  }
