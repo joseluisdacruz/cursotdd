@@ -49,4 +49,9 @@ public class CamelCaseTest {
 	public void  testStringComNumeroNoComeco() {
 		CamelCaseSplitter.converterCamelCase("10Primeiros");
 	}
+	
+	@Test(expected = InvalidStringException.class)
+	public void  testStringComCaractereInvalido() {
+		CamelCaseSplitter.converterCamelCase("nome#Composto");
+	}
  }
