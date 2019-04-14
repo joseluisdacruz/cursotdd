@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class CamelCaseSplitter {
 
 	public static List<String> converterCamelCase(String string) {
-		List<String> retorno = Arrays.asList(string.split("(?=[A-Z])"));
+		List<String> retorno = Arrays.asList(string.split("(?=[A-Z0-9])"));
 		retorno = retorno.stream().reduce(
 				new ArrayList<String>(),
 				CamelCaseSplitter::adicionarString,
@@ -15,10 +15,7 @@ public class CamelCaseSplitter {
 	}
 	
 	private static String toLowerCase(String str) {
-		if (str.matches("[A-Z]+")) {
-			return str;
-		}
-		return str.toLowerCase();
+		return str.matches("[A-Z]+") ? str : str.toLowerCase();
 	}
 
 	private static List<String> adicionarString(List<String> lista, String str) {
@@ -27,7 +24,8 @@ public class CamelCaseSplitter {
 			return lista;
 		}
 		String ultimo = lista.get(lista.size() - 1);
-		if (ultimo.matches("[A-Z]+") && str.matches("[A-Z]")) {
+		if (ultimo.matches("[A-Z]+") && str.matches("[A-Z]") ||
+			ultimo.matches("[0-9]+") && str.matches("[0-9]")) {
 			ultimo += str;
 			lista.set(lista.size() - 1, ultimo);
 		} else {
