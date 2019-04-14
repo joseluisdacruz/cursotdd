@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class CamelCaseSplitter {
 
 	public static List<String> converterCamelCase(String string) {
+		if (isInicioNumerico(string)) throw new InvalidStringException("String inválido.");
 		List<String> retorno = Arrays.asList(string.split("(?=[A-Z0-9])"));
 		retorno = retorno.stream().reduce(
 				new ArrayList<String>(),
@@ -37,6 +38,10 @@ public class CamelCaseSplitter {
 	private static List<String> listaCombiner(List<String> lista1, List<String> lista2) {
 		lista1.addAll(lista2);
 		return lista1;
+	}
+	
+	private static boolean isInicioNumerico(String str) {
+		return str.matches("^[0-9]+.*");
 	}
 
 }
