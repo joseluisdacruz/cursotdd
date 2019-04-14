@@ -32,4 +32,16 @@ public class CamelCaseTest {
 		List<String> strList2 = Arrays.asList("teste", "ABC", "teste");
 		assertEquals(strList2, CamelCaseSplitter.converterCamelCase("testeABCTeste"));
 	}
+	
+	@Test
+	public void separarStringCamelCaseSiglaNumero() {
+		List<String> strList = Arrays.asList("nome", "completo", "123");
+		assertEquals(strList, CamelCaseSplitter.converterCamelCase("nomeCompleto123"));
+		List<String> strList2 = Arrays.asList("teste", "123", "teste");
+		assertEquals(strList2, CamelCaseSplitter.converterCamelCase("teste123Teste"));
+		List<String> strList3 = Arrays.asList("nome", "completo", "ABC", "123");
+		assertEquals(strList3, CamelCaseSplitter.converterCamelCase("nomeCompletoABC123"));
+		List<String> strList4 = Arrays.asList("teste", "ABC", "123", "teste");
+		assertEquals(strList4, CamelCaseSplitter.converterCamelCase("testeABC123Teste"));
+	}
  }
