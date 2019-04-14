@@ -34,7 +34,7 @@ public class CamelCaseTest {
 	}
 	
 	@Test
-	public void separarStringCamelCaseSiglaNumero() {
+	public void testSepararStringCamelCaseSiglaNumero() {
 		List<String> strList = Arrays.asList("nome", "completo", "123");
 		assertEquals(strList, CamelCaseSplitter.converterCamelCase("nomeCompleto123"));
 		List<String> strList2 = Arrays.asList("teste", "123", "teste");
@@ -43,5 +43,10 @@ public class CamelCaseTest {
 		assertEquals(strList3, CamelCaseSplitter.converterCamelCase("nomeCompletoABC123"));
 		List<String> strList4 = Arrays.asList("teste", "ABC", "123", "teste");
 		assertEquals(strList4, CamelCaseSplitter.converterCamelCase("testeABC123Teste"));
+	}
+	
+	@Test(expected = InvalidStringException.class)
+	public void  testStringComNumeroNoComeco() {
+		CamelCaseSplitter.converterCamelCase("10Primeiros");
 	}
  }
