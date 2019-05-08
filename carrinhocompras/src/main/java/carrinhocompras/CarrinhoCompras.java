@@ -1,15 +1,18 @@
 package carrinhocompras;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarrinhoCompras {
 
+	private List<Produto> itens = new ArrayList<>();
+	
 	public void adicionarProduto(Produto produto) {
-		// TODO Auto-generated method stub
-		
+		itens.add(produto);
 	}
 
-	public Object total() {
-		// TODO Auto-generated method stub
-		return null;
+	public int total() {
+		return itens.stream().reduce(0, (val, p) -> val + p.getValor() , (acc1, acc2) -> acc1 + acc2);
 	}
 
 }
