@@ -40,8 +40,7 @@ public class TesteCarrinhoCompras {
 	public void continuaNotificandoComErroEmObservador() {
 		CarrinhoCompras c = new CarrinhoCompras();
 		MockObservadorCarrinho mock1 = new MockObservadorCarrinho();
-		MockObservadorCarrinho mock2 = new MockObservadorCarrinho();
-		mock2.queroQueVoceDePau();
+		ObservadorCarrinho mock2 = new MockObservadorComProblema();
 		MockObservadorCarrinho mock3 = new MockObservadorCarrinho();
 		c.adicionarObservador(mock1);
 		c.adicionarObservador(mock2);
