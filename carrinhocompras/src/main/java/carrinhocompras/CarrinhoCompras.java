@@ -6,9 +6,13 @@ import java.util.List;
 public class CarrinhoCompras {
 
 	private List<Produto> itens = new ArrayList<>();
+	private ObservadorCarrinho observador;
 	
 	public void adicionarProduto(Produto produto) {
 		itens.add(produto);
+		if(observador != null) {
+			observador.produtoAdicionado(produto.getNome(), produto.getValor());
+		}
 	}
 
 	public int total() {
@@ -16,7 +20,7 @@ public class CarrinhoCompras {
 	}
 
 	public void adicionarObservador(ObservadorCarrinho observador) {
-		// TODO Auto-generated method stub
+		this.observador = observador;
 		
 	}
 
