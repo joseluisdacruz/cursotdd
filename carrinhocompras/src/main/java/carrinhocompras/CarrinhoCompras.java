@@ -6,11 +6,11 @@ import java.util.List;
 public class CarrinhoCompras {
 
 	private List<Produto> itens = new ArrayList<>();
-	private ObservadorCarrinho observador;
+	private List<ObservadorCarrinho> observadores = new ArrayList<>();
 	
 	public void adicionarProduto(Produto produto) {
 		itens.add(produto);
-		if(observador != null) {
+		for (ObservadorCarrinho observador : observadores) {
 			observador.produtoAdicionado(produto.getNome(), produto.getValor());
 		}
 	}
@@ -20,7 +20,7 @@ public class CarrinhoCompras {
 	}
 
 	public void adicionarObservador(ObservadorCarrinho observador) {
-		this.observador = observador;
+		this.observadores.add(observador);
 		
 	}
 
