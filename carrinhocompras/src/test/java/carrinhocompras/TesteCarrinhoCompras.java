@@ -15,9 +15,10 @@ public class TesteCarrinhoCompras {
 		assertEquals(220, c.total());
 	}
 	
+	@Test
 	public void escutaAdicaoDeProduto() {
 		CarrinhoCompras c = new CarrinhoCompras();
-		MockObservadorCarrinho mock = MockObservadorCarrinho();
+		MockObservadorCarrinho mock = new MockObservadorCarrinho();
 		c.adicionarObservador(mock);
 		c.adicionarProduto(new Produto("tenis", 100));
 		mock.verificaRecebimentoProduto("tenis", 100);

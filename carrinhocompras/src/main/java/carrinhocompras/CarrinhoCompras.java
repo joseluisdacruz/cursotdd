@@ -15,4 +15,9 @@ public class CarrinhoCompras {
 		return itens.stream().reduce(0, (val, p) -> val + p.getValor() , (acc1, acc2) -> acc1 + acc2);
 	}
 
+	public void adicionarObservador(ObservadorCarrinho observador) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
