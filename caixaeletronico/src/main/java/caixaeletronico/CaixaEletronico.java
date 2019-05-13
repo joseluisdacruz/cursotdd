@@ -2,12 +2,16 @@ package caixaeletronico;
 
 public class CaixaEletronico {
 	
+	private Hardware hardware;
+	
 	public CaixaEletronico(Hardware hardware, ServicoRemoto sr) {
-		
+		this.hardware = hardware;
 	}
 
 	public String logar() {
-		// TODO Auto-generated method stub
+		if(this.hardware.pegarNumeroDaContaCartao() == 1) {
+			return "Usuário Autenticado";
+		}
 		return null;
 	}
 

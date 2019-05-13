@@ -24,7 +24,7 @@ public class CaixaEletronicoTest {
 	
 	@Test
 	public void loginOk() {
-		assertTrue(hardwareMock.chamouPegarNroConta());
 		assertEquals("Usuário Autenticado", ce.logar());
+		assertTrue(hardwareMock.chamouPegarNroConta());
 	}
 }
