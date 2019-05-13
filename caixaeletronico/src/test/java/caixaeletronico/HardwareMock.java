@@ -13,4 +13,8 @@ public class HardwareMock implements Hardware {
 		return chamouPegarNroConta;
 	}
 
+	public void falharPegarNroConta() {
+		// TODO Auto-generated method stub
+	}
+
 }
