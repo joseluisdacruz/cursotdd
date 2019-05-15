@@ -9,10 +9,12 @@ public class CaixaEletronico {
 	}
 
 	public String logar() {
-		if(this.hardware.pegarNumeroDaContaCartao() == 1) {
-			return "Usuário Autenticado";
+		try {
+			this.hardware.pegarNumeroDaContaCartao();
+		} catch (Exception e) {
+			return "Não foi possível autenticar o usuário";
 		}
-		return null;
+		return "Usuário Autenticado";
 	}
 
 }

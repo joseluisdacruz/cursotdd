@@ -3,10 +3,15 @@ package caixaeletronico;
 public class HardwareMock implements Hardware {
 
 	private boolean chamouPegarNroConta = false;
-
-	public Long pegarNumeroDaContaCartao() {
+	
+	private boolean falhar = false;
+	
+	public String pegarNumeroDaContaCartao() {
 		this.chamouPegarNroConta = true;
-		return 1L;
+		if(falhar) {
+			throw new RuntimeException();
+		}
+		return "1";
 	}
 
 	public boolean chamouPegarNroConta() {
@@ -14,7 +19,7 @@ public class HardwareMock implements Hardware {
 	}
 
 	public void falharPegarNroConta() {
-		// TODO Auto-generated method stub
+		this.falhar = true;
 	}
 
 }
