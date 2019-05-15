@@ -4,8 +4,11 @@ public class CaixaEletronico {
 	
 	private Hardware hardware;
 	
+	private ServicoRemoto sr;
+	
 	public CaixaEletronico(Hardware hardware, ServicoRemoto sr) {
 		this.hardware = hardware;
+		this.sr = sr;
 	}
 
 	public String logar() {
@@ -18,8 +21,10 @@ public class CaixaEletronico {
 	}
 
 	public Object sacar() {
-		// TODO Auto-generated method stub
-		return null;
+		sr.recuperarConta();
+		hardware.entragarDinheiro();
+		sr.persistirConta();
+		return "Retire seu dinheiro";
 	}
 
 }

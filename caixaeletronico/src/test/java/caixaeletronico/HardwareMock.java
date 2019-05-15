@@ -4,6 +4,10 @@ public class HardwareMock implements Hardware {
 
 	private boolean chamouPegarNroConta = false;
 	
+	private boolean chamouEntregarDinheiro = false;
+	
+	
+	
 	private boolean falhar = false;
 	
 	public String pegarNumeroDaContaCartao() {
@@ -23,8 +27,11 @@ public class HardwareMock implements Hardware {
 	}
 
 	public boolean chamouEntregarDinheiro() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.chamouEntregarDinheiro;
+	}
+
+	public void entragarDinheiro() {
+		this.chamouEntregarDinheiro = true;
 	}
 
 }
