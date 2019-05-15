@@ -41,6 +41,6 @@ public class CaixaEletronicoTest {
 		assertEquals("Retire seu dinheiro", ce.sacar());
 		assertTrue(servicoRemotoMock.chamouRecuperarConta());
 		assertTrue(hardwareMock.chamouEntregarDinheiro());
-		assertTrue(servicoRemotoMock.chamouPersisterConta());
+		assertTrue(servicoRemotoMock.chamouPersistirConta());
 	}
 }
