@@ -17,4 +17,9 @@ public class CaixaEletronico {
 		return "Usuário Autenticado";
 	}
 
+	public Object sacar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

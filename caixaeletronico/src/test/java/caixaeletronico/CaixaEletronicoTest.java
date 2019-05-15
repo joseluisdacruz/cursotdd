@@ -34,4 +34,13 @@ public class CaixaEletronicoTest {
 		assertEquals("Não foi possível autenticar o usuário", ce.logar());
 		assertTrue(hardwareMock.chamouPegarNroConta());
 	}
+	
+	@Test
+	public void sacarComSaldo() {
+		ce.logar();
+		assertEquals("Retire seu dinheiro", ce.sacar());
+		assertTrue(servicoRemotoMock.chamouRecuperarConta());
+		assertTrue(hardwareMock.chamouEntregarDinheiro());
+		assertTrue(servicoRemotoMock.chamouPersisterConta());
+	}
 }

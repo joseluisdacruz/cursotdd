@@ -22,4 +22,9 @@ public class HardwareMock implements Hardware {
 		this.falhar = true;
 	}
 
+	public boolean chamouEntregarDinheiro() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
