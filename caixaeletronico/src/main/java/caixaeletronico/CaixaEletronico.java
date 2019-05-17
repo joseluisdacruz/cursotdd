@@ -33,4 +33,9 @@ public class CaixaEletronico {
 		servicoRemoto.persistirConta(cc);
 		return "Retire seu dinheiro";
 	}
+
+	public String saldo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
