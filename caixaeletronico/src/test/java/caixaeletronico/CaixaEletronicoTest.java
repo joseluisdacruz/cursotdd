@@ -1,6 +1,7 @@
 package caixaeletronico;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -37,6 +38,7 @@ public class CaixaEletronicoTest {
 	
 	@Test
 	public void sacarComSaldo() {
+		servicoRemotoMock.setContaCorrente(new ContaCorrente(20.00));
 		ce.logar();
 		assertEquals("Retire seu dinheiro", ce.sacar(10.00));
 		assertTrue(servicoRemotoMock.chamouRecuperarConta());
@@ -46,10 +48,11 @@ public class CaixaEletronicoTest {
 	
 	@Test
 	public void sacarSemSaldo() {
+		servicoRemotoMock.setContaCorrente(new ContaCorrente(0.00));
 		ce.logar();
 		assertEquals("Saldo insuficiente", ce.sacar(10.00));
 		assertTrue(servicoRemotoMock.chamouRecuperarConta());
-		assertTrue(hardwareMock.chamouEntregarDinheiro());
-		assertTrue(servicoRemotoMock.chamouPersistirConta());
+		assertFalse(hardwareMock.chamouEntregarDinheiro());
+		assertFalse(servicoRemotoMock.chamouPersistirConta());
 	}
 }

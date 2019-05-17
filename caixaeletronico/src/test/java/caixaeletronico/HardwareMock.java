@@ -6,8 +6,6 @@ public class HardwareMock implements Hardware {
 	
 	private boolean chamouEntregarDinheiro = false;
 	
-	
-	
 	private boolean falhar = false;
 	
 	public String pegarNumeroDaContaCartao() {
@@ -30,7 +28,7 @@ public class HardwareMock implements Hardware {
 		return this.chamouEntregarDinheiro;
 	}
 
-	public void entragarDinheiro() {
+	public void entregarDinheiro() {
 		this.chamouEntregarDinheiro = true;
 	}
 

@@ -2,8 +2,8 @@ package caixaeletronico;
 
 public interface ServicoRemoto {
 
-	void recuperarConta();
+	ContaCorrente recuperarConta(String nroConta);
 
-	void persistirConta();
+	void persistirConta(ContaCorrente cc);
 
 }
