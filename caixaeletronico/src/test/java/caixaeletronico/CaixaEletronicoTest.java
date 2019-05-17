@@ -38,7 +38,16 @@ public class CaixaEletronicoTest {
 	@Test
 	public void sacarComSaldo() {
 		ce.logar();
-		assertEquals("Retire seu dinheiro", ce.sacar());
+		assertEquals("Retire seu dinheiro", ce.sacar(10.00));
+		assertTrue(servicoRemotoMock.chamouRecuperarConta());
+		assertTrue(hardwareMock.chamouEntregarDinheiro());
+		assertTrue(servicoRemotoMock.chamouPersistirConta());
+	}
+	
+	@Test
+	public void sacarSemSaldo() {
+		ce.logar();
+		assertEquals("Saldo insuficiente", ce.sacar(10.00));
 		assertTrue(servicoRemotoMock.chamouRecuperarConta());
 		assertTrue(hardwareMock.chamouEntregarDinheiro());
 		assertTrue(servicoRemotoMock.chamouPersistirConta());
