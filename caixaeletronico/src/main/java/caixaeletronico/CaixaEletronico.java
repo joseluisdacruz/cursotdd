@@ -1,5 +1,9 @@
 package caixaeletronico;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 public class CaixaEletronico {
 	
 	private String nroConta;
@@ -18,6 +22,7 @@ public class CaixaEletronico {
 	public String logar() {
 		try {
 			this.nroConta = hardware.pegarNumeroDaContaCartao();
+			this.cc = servicoRemoto.recuperarConta(this.nroConta);
 		} catch (Exception e) {
 			return "Não foi possível autenticar o usuário";
 		}
@@ -25,7 +30,6 @@ public class CaixaEletronico {
 	}
 
 	public String sacar(double valor) {
-		this.cc = servicoRemoto.recuperarConta(this.nroConta);
 		if(cc.getSaldo() <= valor) {
 			return "Saldo insuficiente";
 		}
@@ -35,7 +39,16 @@ public class CaixaEletronico {
 	}
 
 	public String saldo() {
-		// TODO Auto-generated method stub
-		return null;
+		DecimalFormat df = criarFormatador();
+		return "O saldo é R$" + df.format(cc.getSaldo()) ;
+	}
+
+	private DecimalFormat criarFormatador() {
+		Locale currentLocale = Locale.getDefault();
+		DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(currentLocale);
+		otherSymbols.setDecimalSeparator(',');
+		otherSymbols.setGroupingSeparator('.'); 
+		DecimalFormat df = new DecimalFormat("#,##0.00", otherSymbols);
+		return df;
 	}
 }
