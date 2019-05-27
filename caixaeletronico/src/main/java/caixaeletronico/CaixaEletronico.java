@@ -51,4 +51,9 @@ public class CaixaEletronico {
 		DecimalFormat df = new DecimalFormat("#,##0.00", otherSymbols);
 		return df;
 	}
+
+	public String depositar(double d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

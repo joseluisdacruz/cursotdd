@@ -63,4 +63,12 @@ public class CaixaEletronicoTest {
 		assertEquals("O saldo é R$10,00", ce.saldo());
 		assertTrue(servicoRemotoMock.chamouRecuperarConta());
 	}
+	
+	@Test()
+	public void depositarOk() {
+		servicoRemotoMock.setContaCorrente(new ContaCorrente(10.00));
+		ce.logar();
+		assertEquals("Depósito recebido com sucesso", ce.depositar(20.00));
+		assertEquals("O saldo é R$30,00", ce.saldo());
+	}
 }
