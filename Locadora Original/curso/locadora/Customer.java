@@ -6,14 +6,19 @@ import java.util.Vector;
 public class Customer {
 	
 	private String _name;
-	private Vector _rentals = new Vector();
+	private Vector rentals = new Vector();
+	private int frequentRenterPoints = 0;
+	private double totalAmount = 0.0;
+	
 
 	public Customer(String name) {
 		_name = name;
 	};
 
-	public void addRental(Rental arg) {
-		_rentals.addElement(arg);
+	public void addRental(Rental rental) {
+		rentals.addElement(rental);
+		frequentRenterPoints += rental.getFrequentRenterPoints();
+		totalAmount  += rental.getAmount();
 	}
 
 	public String getName() {
@@ -21,7 +26,7 @@ public class Customer {
 	}
 
 	public String statement() {
-		Enumeration rentals = _rentals.elements();
+		Enumeration rentals = this.rentals.elements();
 		String result = "Rental Record for " + getName() + "\n";
 		while (rentals.hasMoreElements()) {
 			Rental rental = (Rental) rentals.nextElement();
@@ -35,22 +40,10 @@ public class Customer {
 	}
 	
 	public int getTotalFrequentRenterPoints() {
-		int frequentRenterPoints = 0;
-		Enumeration rentals = _rentals.elements();
-		while (rentals.hasMoreElements()) {
-			Rental rental = (Rental) rentals.nextElement();
-			frequentRenterPoints += rental.getFrequentRenterPoints();
-		}
 		return frequentRenterPoints;
 	}
 	
 	public double getTotalAmount() {
-		double totalAmount = 0;
-		Enumeration rentals = _rentals.elements();
-		while (rentals.hasMoreElements()) {
-			Rental rental = (Rental) rentals.nextElement();
-			totalAmount += rental.getAmount();
-		}
 		return totalAmount;
 	}
 	
