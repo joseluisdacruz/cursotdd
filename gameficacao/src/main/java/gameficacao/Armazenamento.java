@@ -14,7 +14,7 @@ public class Armazenamento {
 		
 	}
 
-	public List<Pontuacao> recuperarPontuacao(String string) {
+	public List<Pontuacao> recuperarPontuacao(String string, TipoPontuacao tipo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

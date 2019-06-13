@@ -2,7 +2,7 @@ package gameficacao;
 
 public class Pontuacao {
 
-	public Pontuacao(String string, TipoPonto moeda, int i) {
+	public Pontuacao(String string, TipoPontuacao moeda, int i) {
 		// TODO Auto-generated constructor stub
 	}
 	

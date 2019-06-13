@@ -1,6 +1,6 @@
 package gameficacao;
 
-public enum TipoPonto {
+public enum TipoPontuacao {
 	MOEDA
 	
 }
