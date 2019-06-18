@@ -45,4 +45,9 @@ public class Armazenamento {
 		return 0;
 	}
 
+	public Object recuperarUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
