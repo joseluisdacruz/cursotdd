@@ -1,6 +1,5 @@
 package gameficacao;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,8 +12,11 @@ public class Armazenamento {
 	private static final String NOME_ARQUIVO = "./pontuacao.txt";
 
 	public void limparArquivo() {
-		File file = new File(NOME_ARQUIVO);
-		file.delete();
+		try {
+			Files.delete(Paths.get(NOME_ARQUIVO));
+		} catch (IOException e) {
+			System.err.println("Não foi possível deletar o arquivo.");
+		}
 	}
 
 	public void adicionarPontuacao(Pontuacao pontuacao) {
