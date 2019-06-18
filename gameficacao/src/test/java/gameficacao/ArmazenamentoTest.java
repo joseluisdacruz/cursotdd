@@ -2,8 +2,6 @@ package gameficacao;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Test;
 
 public class ArmazenamentoTest {
@@ -14,8 +12,8 @@ public class ArmazenamentoTest {
 		armazenamento.limparArquivo();
 		Pontuacao pontuacao = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
 		armazenamento.adicionarPontuacao(pontuacao);
-		int pontuacao = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.MOEDA);
-		assertEquals(pontuacao, 10);;		
+		int pontos = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.MOEDA);
+		assertEquals(pontos, 10);;		
 	}
 	
 	@Test
