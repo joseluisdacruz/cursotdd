@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Armazenamento {
@@ -45,9 +48,16 @@ public class Armazenamento {
 		return 0;
 	}
 
-	public Object recuperarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> recuperarUsuarios() {
+		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
+			return stream.map(Pontuacao::parse)
+					.map(Pontuacao::getUsuario)
+					.distinct()
+					.collect(Collectors.toList());
+		} catch (IOException e) {
+			System.err.println("Erro ao ler o arquivo");
+		}
+		return new ArrayList<>();
 	}
 
 }
