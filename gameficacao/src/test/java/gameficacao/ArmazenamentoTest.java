@@ -14,8 +14,19 @@ public class ArmazenamentoTest {
 		armazenamento.limparArquivo();
 		Pontuacao pontuacao = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
 		armazenamento.adicionarPontuacao(pontuacao);
-		List<Pontuacao> listaPontuacao = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.MOEDA);
-		int pontos = listaPontuacao.stream().mapToInt(Pontuacao::getPontos).sum();
-		assertEquals(pontos, 10);;		
+		int pontuacao = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.MOEDA);
+		assertEquals(pontuacao, 10);;		
+	}
+	
+	@Test
+	public void recuperarPontuacao() {
+		Armazenamento armazenamento = new Armazenamento();
+		armazenamento.limparArquivo();
+		Pontuacao pontuacao1 = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
+		armazenamento.adicionarPontuacao(pontuacao1);
+		Pontuacao pontuacao2 = new Pontuacao("Zé", TipoPontuacao.ESTRELA, 20);
+		armazenamento.adicionarPontuacao(pontuacao2);
+		int pontuacao = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.ESTRELA);
+		assertEquals(pontuacao, 20);
 	}
 }
