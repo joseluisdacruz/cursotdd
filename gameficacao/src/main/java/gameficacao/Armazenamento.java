@@ -1,12 +1,14 @@
 package gameficacao;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 public class Armazenamento {
 
 	public void limparArquivo() {
-		// TODO Auto-generated method stub
-		
+		File file = new File("pontuacao.txt");
+		file.delete();		
 	}
 
 	public void adicionarPontuacao(Pontuacao pontuacao) {
@@ -16,7 +18,7 @@ public class Armazenamento {
 
 	public List<Pontuacao> recuperarPontuacao(String string, TipoPontuacao tipo) {
 		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(new Pontuacao("Zé", TipoPontuacao.MOEDA, 10));
 	}
 
 }

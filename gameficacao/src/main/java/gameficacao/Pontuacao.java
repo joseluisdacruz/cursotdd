@@ -2,11 +2,26 @@ package gameficacao;
 
 public class Pontuacao {
 
-	public Pontuacao(String string, TipoPontuacao moeda, int i) {
-		// TODO Auto-generated constructor stub
-	}
+	private String usuario;
+	private TipoPontuacao tipoPontuacao;
+	private int pontos;
 	
+	public Pontuacao(String usuario, TipoPontuacao tipoPontuacao, int pontos) {
+		super();
+		this.usuario = usuario;
+		this.tipoPontuacao = tipoPontuacao;
+		this.pontos = pontos;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public TipoPontuacao getTipoPontuacao() {
+		return tipoPontuacao;
+	}
+
 	public int getPontos() {
-		return 0;
+		return pontos;
 	}
 }
