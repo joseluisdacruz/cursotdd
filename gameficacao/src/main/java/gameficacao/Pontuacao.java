@@ -24,4 +24,14 @@ public class Pontuacao {
 	public int getPontos() {
 		return pontos;
 	}
+	
+	public static Pontuacao parse(String pontuacao) {
+		String[] dados =  pontuacao.split("\\|");
+		return new Pontuacao(dados[0], TipoPontuacao.valueOf(dados[1]), Integer.parseInt(dados[2]));
+	}
+
+	@Override
+	public String toString() {
+		return usuario + "|" + tipoPontuacao + "|" + pontos;
+	}
 }
