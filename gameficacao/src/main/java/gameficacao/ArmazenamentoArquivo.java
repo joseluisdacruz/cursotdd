@@ -10,21 +10,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ArmazenamentoImpl implements Armazenamento {
+public class ArmazenamentoArquivo implements Armazenamento {
 
-	private static final String NOME_ARQUIVO = "./pontuacao.txt";
-
-	public void limparArquivo() {
-		try {
-			Files.delete(Paths.get(NOME_ARQUIVO));
-		} catch (IOException e) {
-			System.err.println("Não foi possível deletar o arquivo.");
-		}
+	private String nomeArquivo = "./db.txt";
+	
+	public ArmazenamentoArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
 	}
 
 	public void adicionarPontos(PontosUsuario pontos) {
 		byte[] dados = pontos.toString().getBytes();
-		Path path = Paths.get(NOME_ARQUIVO);
+		Path path = Paths.get(nomeArquivo);
 		try {
 			if (Files.isWritable(path)) {
 				Files.write(path, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
@@ -38,7 +34,7 @@ public class ArmazenamentoImpl implements Armazenamento {
 	}
 
 	public int recuperarPontos(String usuario, TipoPonto tipo) {
-		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
+		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
 			return stream.map(PontosUsuario::parse)
 					.filter(p -> p.getTipoPontuacao().equals(tipo) && p.getUsuario().equals(usuario))
 					.mapToInt(PontosUsuario::getPontos).sum();
@@ -49,7 +45,7 @@ public class ArmazenamentoImpl implements Armazenamento {
 	}
 
 	public Set<String> recuperarUsuarios() {
-		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
+		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
 			return stream.map(PontosUsuario::parse)
 					.map(PontosUsuario::getUsuario)
 					.distinct()
@@ -61,7 +57,7 @@ public class ArmazenamentoImpl implements Armazenamento {
 	}
 
 	public Set<TipoPonto> recuperarTiposPontos(String usuario) {
-		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
+		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
 			return stream.map(PontosUsuario::parse)
 					.filter(p -> p.getUsuario().equals(usuario))
 					.map(PontosUsuario::getTipoPontuacao)

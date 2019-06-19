@@ -3,14 +3,12 @@ package gameficacao;
 public class PontosUsuario {
 
 	private String usuario;
-	private TipoPonto tipoPontuacao;
-	private int pontos;
+	private Pontos pontos;
 	
 	public PontosUsuario(String usuario, TipoPonto tipoPontuacao, int pontos) {
 		super();
 		this.usuario = usuario;
-		this.tipoPontuacao = tipoPontuacao;
-		this.pontos = pontos;
+		this.pontos = new Pontos(tipoPontuacao, pontos);
 	}
 
 	public String getUsuario() {
@@ -18,11 +16,11 @@ public class PontosUsuario {
 	}
 
 	public TipoPonto getTipoPontuacao() {
-		return tipoPontuacao;
+		return this.pontos.getTipo();
 	}
 
 	public int getPontos() {
-		return pontos;
+		return this.pontos.getQuantidade();
 	}
 	
 	public static PontosUsuario parse(String pontuacao) {
@@ -32,15 +30,14 @@ public class PontosUsuario {
 
 	@Override
 	public String toString() {
-		return usuario + "|" + tipoPontuacao + "|" + pontos;
+		return getUsuario() + "|" + getTipoPontuacao() + "|" + getPontos();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + pontos;
-		result = prime * result + ((tipoPontuacao == null) ? 0 : tipoPontuacao.hashCode());
+		result = prime * result + ((pontos == null) ? 0 : pontos.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
@@ -54,9 +51,10 @@ public class PontosUsuario {
 		if (getClass() != obj.getClass())
 			return false;
 		PontosUsuario other = (PontosUsuario) obj;
-		if (pontos != other.pontos)
-			return false;
-		if (tipoPontuacao != other.tipoPontuacao)
+		if (pontos == null) {
+			if (other.pontos != null)
+				return false;
+		} else if (!pontos.equals(other.pontos))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)

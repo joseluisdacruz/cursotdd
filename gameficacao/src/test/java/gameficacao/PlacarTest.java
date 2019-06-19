@@ -26,10 +26,6 @@ public class PlacarTest {
 		private boolean chamouRecuperarTiposPontos = false;
 
 		@Override
-		public void limparArquivo() {
-		}
-
-		@Override
 		public void adicionarPontos(PontosUsuario pontos) {
 			this.chamouAdicionarPontos = true;
 			
@@ -92,6 +88,11 @@ public class PlacarTest {
 				this.placar.retornarPontosUsuario("jose"));
 		assertTrue(armazenamentoMock.isChamouRecuperarTiposPontos());
 		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
+	}
+	
+	@Test
+	public void recuperarRank() {
+		
 	}
 
 }

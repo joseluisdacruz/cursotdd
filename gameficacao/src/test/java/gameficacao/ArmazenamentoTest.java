@@ -6,6 +6,9 @@ import static gameficacao.TipoPonto.MOEDA;
 import static gameficacao.TipoPonto.TOPICO;
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -15,11 +18,21 @@ import org.junit.Test;
 public class ArmazenamentoTest {
 
 	private Armazenamento armazenamento;
+	
+	private static final String NOME_ARQUIVO = "./pontos.txt";
+	
+	private void limparArquivo(String nomeArquivo) {
+		try {
+			Files.delete(Paths.get(nomeArquivo));
+		} catch (IOException e) {
+			System.err.println("Não foi possível deletar o arquivo.");
+		}
+	}
 
 	@Before
 	public void init() {
-		armazenamento = new ArmazenamentoImpl();
-		armazenamento.limparArquivo();
+		limparArquivo(NOME_ARQUIVO);
+		armazenamento = new ArmazenamentoArquivo(NOME_ARQUIVO);
 		armazenamento.adicionarPontos(new PontosUsuario("Zé", MOEDA, 10));
 		armazenamento.adicionarPontos(new PontosUsuario("Zé", ESTRELA, 20));
 		armazenamento.adicionarPontos(new PontosUsuario("João", TOPICO, 30));
