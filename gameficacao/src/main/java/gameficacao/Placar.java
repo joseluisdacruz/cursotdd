@@ -15,10 +15,10 @@ public class Placar {
 		armazenamento.adicionarPontos(pontos);
 	}
 
-	public Set<PontosUsuario> retornarPontosUsuario(String usuario) {
+	public Set<Pontos> retornarPontosUsuario(String usuario) {
 		return armazenamento.recuperarTiposPontos(usuario)
 				.stream()
-				.map(tp -> new PontosUsuario(usuario, tp, armazenamento.recuperarPontos(usuario, tp)))
+				.map(tp -> new Pontos(tp, armazenamento.recuperarPontos(usuario, tp)))
 				.collect(Collectors.toSet());
 	}
 
