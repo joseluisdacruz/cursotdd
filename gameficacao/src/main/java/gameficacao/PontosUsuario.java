@@ -1,12 +1,12 @@
 package gameficacao;
 
-public class Pontos {
+public class PontosUsuario {
 
 	private String usuario;
 	private TipoPonto tipoPontuacao;
 	private int pontos;
 	
-	public Pontos(String usuario, TipoPonto tipoPontuacao, int pontos) {
+	public PontosUsuario(String usuario, TipoPonto tipoPontuacao, int pontos) {
 		super();
 		this.usuario = usuario;
 		this.tipoPontuacao = tipoPontuacao;
@@ -25,9 +25,9 @@ public class Pontos {
 		return pontos;
 	}
 	
-	public static Pontos parse(String pontuacao) {
+	public static PontosUsuario parse(String pontuacao) {
 		String[] dados =  pontuacao.split("\\|");
-		return new Pontos(dados[0], TipoPonto.valueOf(dados[1]), Integer.parseInt(dados[2]));
+		return new PontosUsuario(dados[0], TipoPonto.valueOf(dados[1]), Integer.parseInt(dados[2]));
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class Pontos {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pontos other = (Pontos) obj;
+		PontosUsuario other = (PontosUsuario) obj;
 		if (pontos != other.pontos)
 			return false;
 		if (tipoPontuacao != other.tipoPontuacao)

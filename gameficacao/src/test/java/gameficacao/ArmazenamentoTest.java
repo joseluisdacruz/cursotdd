@@ -20,11 +20,11 @@ public class ArmazenamentoTest {
 	public void init() {
 		armazenamento = new ArmazenamentoImpl();
 		armazenamento.limparArquivo();
-		armazenamento.adicionarPontos(new Pontos("Zé", MOEDA, 10));
-		armazenamento.adicionarPontos(new Pontos("Zé", ESTRELA, 20));
-		armazenamento.adicionarPontos(new Pontos("João", TOPICO, 30));
-		armazenamento.adicionarPontos(new Pontos("Pedro", CURTIDA, 40));
-		armazenamento.adicionarPontos(new Pontos("Pedro", TOPICO, 30));
+		armazenamento.adicionarPontos(new PontosUsuario("Zé", MOEDA, 10));
+		armazenamento.adicionarPontos(new PontosUsuario("Zé", ESTRELA, 20));
+		armazenamento.adicionarPontos(new PontosUsuario("João", TOPICO, 30));
+		armazenamento.adicionarPontos(new PontosUsuario("Pedro", CURTIDA, 40));
+		armazenamento.adicionarPontos(new PontosUsuario("Pedro", TOPICO, 30));
 	}
 
 	@Test

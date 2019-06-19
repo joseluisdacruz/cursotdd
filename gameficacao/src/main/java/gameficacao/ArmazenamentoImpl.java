@@ -22,7 +22,7 @@ public class ArmazenamentoImpl implements Armazenamento {
 		}
 	}
 
-	public void adicionarPontos(Pontos pontos) {
+	public void adicionarPontos(PontosUsuario pontos) {
 		byte[] dados = pontos.toString().getBytes();
 		Path path = Paths.get(NOME_ARQUIVO);
 		try {
@@ -39,9 +39,9 @@ public class ArmazenamentoImpl implements Armazenamento {
 
 	public int recuperarPontos(String usuario, TipoPonto tipo) {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
-			return stream.map(Pontos::parse)
+			return stream.map(PontosUsuario::parse)
 					.filter(p -> p.getTipoPontuacao().equals(tipo) && p.getUsuario().equals(usuario))
-					.mapToInt(Pontos::getPontos).sum();
+					.mapToInt(PontosUsuario::getPontos).sum();
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");
 		}
@@ -50,8 +50,8 @@ public class ArmazenamentoImpl implements Armazenamento {
 
 	public Set<String> recuperarUsuarios() {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
-			return stream.map(Pontos::parse)
-					.map(Pontos::getUsuario)
+			return stream.map(PontosUsuario::parse)
+					.map(PontosUsuario::getUsuario)
 					.distinct()
 					.collect(Collectors.toSet());
 		} catch (IOException e) {
@@ -62,9 +62,9 @@ public class ArmazenamentoImpl implements Armazenamento {
 
 	public Set<TipoPonto> recuperarTiposPontos(String usuario) {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
-			return stream.map(Pontos::parse)
+			return stream.map(PontosUsuario::parse)
 					.filter(p -> p.getUsuario().equals(usuario))
-					.map(Pontos::getTipoPontuacao)
+					.map(PontosUsuario::getTipoPontuacao)
 					.collect(Collectors.toSet());
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");

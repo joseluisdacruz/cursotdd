@@ -11,14 +11,14 @@ public class Placar {
 		this.armazenamento = armazenamento;
 	}
 
-	public void registrar(Pontos pontos) {
+	public void registrar(PontosUsuario pontos) {
 		armazenamento.adicionarPontos(pontos);
 	}
 
-	public Set<Pontos> retornarPontosUsuario(String usuario) {
+	public Set<PontosUsuario> retornarPontosUsuario(String usuario) {
 		return armazenamento.recuperarTiposPontos(usuario)
 				.stream()
-				.map(tp -> new Pontos(usuario, tp, armazenamento.recuperarPontos(usuario, tp)))
+				.map(tp -> new PontosUsuario(usuario, tp, armazenamento.recuperarPontos(usuario, tp)))
 				.collect(Collectors.toSet());
 	}
 

@@ -30,7 +30,7 @@ public class PlacarTest {
 		}
 
 		@Override
-		public void adicionarPontos(Pontos pontos) {
+		public void adicionarPontos(PontosUsuario pontos) {
 			this.chamouAdicionarPontos = true;
 			
 		}
@@ -78,17 +78,17 @@ public class PlacarTest {
 	
 	@Test
 	public void registrarPonto() {
-		this.placar.registrar(new Pontos("guerra", ESTRELA, 10));
+		this.placar.registrar(new PontosUsuario("guerra", ESTRELA, 10));
 		assertTrue(this.armazenamentoMock.isChamouAdicionarPontos());
 	}
 	
 	@Test
 	public void retornarPontosUsuario() {
-		Pontos pontos1 = new Pontos("jose", ESTRELA, 15);
-		Pontos pontos2 = new Pontos("jose", CURTIDA, 10);
-		Pontos pontos3 = new Pontos("jose", TOPICO, 10);
+		PontosUsuario pontos1 = new PontosUsuario("jose", ESTRELA, 15);
+		PontosUsuario pontos2 = new PontosUsuario("jose", CURTIDA, 10);
+		PontosUsuario pontos3 = new PontosUsuario("jose", TOPICO, 10);
 		assertEquals(
-				new HashSet<Pontos>(Arrays.asList(pontos1, pontos2, pontos3)),
+				new HashSet<PontosUsuario>(Arrays.asList(pontos1, pontos2, pontos3)),
 				this.placar.retornarPontosUsuario("jose"));
 		assertTrue(armazenamentoMock.isChamouRecuperarTiposPontos());
 		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
