@@ -1,8 +1,13 @@
 package gameficacao;
 
 import static gameficacao.TipoPonto.ESTRELA;
+import static gameficacao.TipoPonto.CURTIDA;
+import static gameficacao.TipoPonto.TOPICO;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
@@ -49,6 +54,16 @@ public class PlacarTest {
 		public boolean isChamouAdicionarPontos() {
 			return chamouAdicionarPontos;
 		}
+
+		public boolean isChamouRecuperarTiposPontos() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean isChamouRecuperarPontos() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 		
 	}
 	
@@ -62,6 +77,18 @@ public class PlacarTest {
 	public void registrarPonto() {
 		this.placar.registrar(new Pontos("guerra", ESTRELA, 10));
 		assertTrue(this.armazenamentoMock.isChamouAdicionarPontos());
+	}
+	
+	@Test
+	public void retornarPontosUsuario() {
+		Pontos pontos1 = new Pontos("jose", ESTRELA, 15);
+		Pontos pontos2 = new Pontos("jose", CURTIDA, 10);
+		Pontos pontos3 = new Pontos("jose", TOPICO, 10);
+		assertEquals(
+				new HashSet<Pontos>(Arrays.asList(pontos1, pontos2, pontos3)),
+				this.placar.retornarPontosUsuario("jose"));
+		assertTrue(armazenamentoMock.isChamouRecuperarTiposPontos());
+		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
 	}
 
 }

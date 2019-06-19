@@ -12,4 +12,9 @@ public class Placar {
 		armazenamento.adicionarPontos(pontos);
 	}
 
+	public Object retornarPontosUsuario(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
