@@ -60,9 +60,16 @@ public class Armazenamento {
 		return new ArrayList<>();
 	}
 
-	public Object recuperarTiposPontos(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TipoPonto> recuperarTiposPontos(String usuario) {
+		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
+			return stream.map(Pontos::parse)
+					.filter(p -> p.getUsuario().equals(usuario))
+					.map(Pontos::getTipoPontuacao)
+					.collect(Collectors.toList());
+		} catch (IOException e) {
+			System.err.println("Erro ao ler o arquivo");
+		}
+		return new ArrayList<>();
 	}
 
 }

@@ -45,6 +45,6 @@ public class ArmazenamentoTest {
 	public void recuperarTiposPontos() {
 		assertEquals(armazenamento.recuperarTiposPontos("Zé"), Arrays.asList(MOEDA, ESTRELA));
 		assertEquals(armazenamento.recuperarTiposPontos("João"), Arrays.asList(TOPICO));
-		assertEquals(armazenamento.recuperarTiposPontos("Pedro"), Arrays.asList(TOPICO, CURTIDA));
+		assertEquals(armazenamento.recuperarTiposPontos("Pedro"), Arrays.asList(CURTIDA, TOPICO));
 	}
 }
