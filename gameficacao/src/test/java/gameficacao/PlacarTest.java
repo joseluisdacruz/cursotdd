@@ -16,15 +16,15 @@ public class PlacarTest {
 	
 	private class ArmazenamentoMock implements Armazenamento {
 
+		private boolean chamouAdicionarPontos = false;
+
 		@Override
 		public void limparArquivo() {
-			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void adicionarPontos(Pontos pontos) {
-			// TODO Auto-generated method stub
+			this.chamouAdicionarPontos = true;
 			
 		}
 
@@ -47,14 +47,13 @@ public class PlacarTest {
 		}
 
 		public boolean isChamouAdicionarPontos() {
-			// TODO Auto-generated method stub
-			return false;
+			return chamouAdicionarPontos;
 		}
 		
 	}
 	
 	@Before
-	private void init() {
+	public void init() {
 		this.armazenamentoMock = new ArmazenamentoMock();
 		this.placar = new Placar(this.armazenamentoMock);
 	}
