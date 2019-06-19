@@ -22,8 +22,8 @@ public class Armazenamento {
 		}
 	}
 
-	public void adicionarPontuacao(Pontuacao pontuacao) {
-		byte[] dados = pontuacao.toString().getBytes();
+	public void adicionarPontos(Pontos pontos) {
+		byte[] dados = pontos.toString().getBytes();
 		Path path = Paths.get(NOME_ARQUIVO);
 		try {
 			if (Files.isWritable(path)) {
@@ -37,11 +37,11 @@ public class Armazenamento {
 		}
 	}
 
-	public int recuperarPontuacao(String usuario, TipoPontuacao tipo) {
+	public int recuperarPontos(String usuario, TipoPonto tipo) {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
-			return stream.map(Pontuacao::parse)
+			return stream.map(Pontos::parse)
 					.filter(p -> p.getTipoPontuacao().equals(tipo) && p.getUsuario().equals(usuario))
-					.mapToInt(Pontuacao::getPontos).sum();
+					.mapToInt(Pontos::getPontos).sum();
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");
 		}
@@ -50,8 +50,8 @@ public class Armazenamento {
 
 	public List<String> recuperarUsuarios() {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
-			return stream.map(Pontuacao::parse)
-					.map(Pontuacao::getUsuario)
+			return stream.map(Pontos::parse)
+					.map(Pontos::getUsuario)
 					.distinct()
 					.collect(Collectors.toList());
 		} catch (IOException e) {

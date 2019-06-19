@@ -6,45 +6,45 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+import static gameficacao.TipoPonto.*;
 
 public class ArmazenamentoTest {
 
 	private Armazenamento armazenamento;
-	
+
 	@Before
 	public void init() {
 		armazenamento = new Armazenamento();
 		armazenamento.limparArquivo();
+		armazenamento.adicionarPontos(new Pontos("Zé", MOEDA, 10));
+		armazenamento.adicionarPontos(new Pontos("Zé", ESTRELA, 20));
+		armazenamento.adicionarPontos(new Pontos("João", TOPICO, 30));
+		armazenamento.adicionarPontos(new Pontos("Pedro", CURTIDA, 40));
+		armazenamento.adicionarPontos(new Pontos("Pedro", TOPICO, 30));
 	}
-	
+
 	@Test
 	public void armazenarPontos() {
-		Pontuacao pontuacao = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
-		armazenamento.adicionarPontuacao(pontuacao);
-		int pontos = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.MOEDA);
-		assertEquals(pontos, 10);;		
+		int pontos = armazenamento.recuperarPontos("Zé", MOEDA);
+		assertEquals(pontos, 10);
+		;
 	}
-	
+
 	@Test
 	public void recuperarPontuacao() {
-		Pontuacao pontuacao1 = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
-		armazenamento.adicionarPontuacao(pontuacao1);
-		Pontuacao pontuacao2 = new Pontuacao("Zé", TipoPontuacao.ESTRELA, 20);
-		armazenamento.adicionarPontuacao(pontuacao2);
-		int pontuacao = armazenamento.recuperarPontuacao("Zé", TipoPontuacao.ESTRELA);
+		int pontuacao = armazenamento.recuperarPontos("Zé", ESTRELA);
 		assertEquals(pontuacao, 20);
+	}
+
+	@Test
+	public void recuperarUsuarios() {
+		assertEquals(armazenamento.recuperarUsuarios(), Arrays.asList("Zé", "João", "Pedro"));
 	}
 	
 	@Test
-	public void recuperarUsuarios() {
-		Pontuacao pontuacao1 = new Pontuacao("Zé", TipoPontuacao.MOEDA, 10);
-		Pontuacao pontuacao2 = new Pontuacao("Zé", TipoPontuacao.ESTRELA, 20);
-		Pontuacao pontuacao3 = new Pontuacao("João", TipoPontuacao.TOPICO, 30);
-		Pontuacao pontuacao4 = new Pontuacao("Pedro", TipoPontuacao.CURTIDA, 40);
-		armazenamento.adicionarPontuacao(pontuacao1);
-		armazenamento.adicionarPontuacao(pontuacao2);
-		armazenamento.adicionarPontuacao(pontuacao3);
-		armazenamento.adicionarPontuacao(pontuacao4);
-		assertEquals(armazenamento.recuperarUsuarios(), Arrays.asList("Zé", "João", "Pedro"));
+	public void recuperarTiposPontuacao() {
+//		assertEquals(armazenamento.recuperarTiposPontuacao("Zé"), Arrays.asList(MOEDA, ESTRELA));
+//		assertEquals(armazenamento.recuperarTiposPontuacao("João"), Arrays.asList(TOPICO));
+//		assertEquals(armazenamento.recuperarTiposPontuacao("Pedro"), Arrays.asList(TOPICO, CURTIDA));
 	}
 }
