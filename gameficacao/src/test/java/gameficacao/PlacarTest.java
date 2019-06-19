@@ -84,11 +84,11 @@ public class PlacarTest {
 	
 	@Test
 	public void retornarPontosUsuario() {
-		PontosUsuario pontos1 = new PontosUsuario("jose", ESTRELA, 15);
-		PontosUsuario pontos2 = new PontosUsuario("jose", CURTIDA, 10);
-		PontosUsuario pontos3 = new PontosUsuario("jose", TOPICO, 10);
+		Pontos pontos1 = new Pontos(ESTRELA, 15);
+		Pontos pontos2 = new Pontos(CURTIDA, 10);
+		Pontos pontos3 = new Pontos(TOPICO, 10);
 		assertEquals(
-				new HashSet<PontosUsuario>(Arrays.asList(pontos1, pontos2, pontos3)),
+				new HashSet<Pontos>(Arrays.asList(pontos1, pontos2, pontos3)),
 				this.placar.retornarPontosUsuario("jose"));
 		assertTrue(armazenamentoMock.isChamouRecuperarTiposPontos());
 		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
