@@ -5,8 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,28 +48,28 @@ public class Armazenamento {
 		return 0;
 	}
 
-	public List<String> recuperarUsuarios() {
+	public Set<String> recuperarUsuarios() {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
 			return stream.map(Pontos::parse)
 					.map(Pontos::getUsuario)
 					.distinct()
-					.collect(Collectors.toList());
+					.collect(Collectors.toSet());
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");
 		}
-		return new ArrayList<>();
+		return new HashSet<>();
 	}
 
-	public List<TipoPonto> recuperarTiposPontos(String usuario) {
+	public Set<TipoPonto> recuperarTiposPontos(String usuario) {
 		try (Stream<String> stream = Files.lines(Paths.get(NOME_ARQUIVO))) {
 			return stream.map(Pontos::parse)
 					.filter(p -> p.getUsuario().equals(usuario))
 					.map(Pontos::getTipoPontuacao)
-					.collect(Collectors.toList());
+					.collect(Collectors.toSet());
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");
 		}
-		return new ArrayList<>();
+		return new HashSet<>();
 	}
 
 }

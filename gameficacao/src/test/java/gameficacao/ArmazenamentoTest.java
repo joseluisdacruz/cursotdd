@@ -3,6 +3,7 @@ package gameficacao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,25 +27,25 @@ public class ArmazenamentoTest {
 	@Test
 	public void armazenarPontos() {
 		int pontos = armazenamento.recuperarPontos("Zé", MOEDA);
-		assertEquals(pontos, 10);
+		assertEquals(10, pontos);
 		;
 	}
 
 	@Test
 	public void recuperarPontos() {
 		int pontuacao = armazenamento.recuperarPontos("Zé", ESTRELA);
-		assertEquals(pontuacao, 20);
+		assertEquals(20, pontuacao);
 	}
 
 	@Test
 	public void recuperarUsuarios() {
-		assertEquals(armazenamento.recuperarUsuarios(), Arrays.asList("Zé", "João", "Pedro"));
+		assertEquals(new HashSet<String>(Arrays.asList("Zé", "João", "Pedro")), armazenamento.recuperarUsuarios());
 	}
 
 	@Test
 	public void recuperarTiposPontos() {
-		assertEquals(armazenamento.recuperarTiposPontos("Zé"), Arrays.asList(MOEDA, ESTRELA));
-		assertEquals(armazenamento.recuperarTiposPontos("João"), Arrays.asList(TOPICO));
-		assertEquals(armazenamento.recuperarTiposPontos("Pedro"), Arrays.asList(CURTIDA, TOPICO));
+		assertEquals(new HashSet<TipoPonto>(Arrays.asList(MOEDA, ESTRELA)), armazenamento.recuperarTiposPontos("Zé"));
+		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO)), armazenamento.recuperarTiposPontos("João"));
+		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO, CURTIDA)), armazenamento.recuperarTiposPontos("Pedro"));
 	}
 }
