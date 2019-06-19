@@ -31,7 +31,7 @@ public class ArmazenamentoTest {
 	}
 
 	@Test
-	public void recuperarPontuacao() {
+	public void recuperarPontos() {
 		int pontuacao = armazenamento.recuperarPontos("Zé", ESTRELA);
 		assertEquals(pontuacao, 20);
 	}
@@ -40,11 +40,11 @@ public class ArmazenamentoTest {
 	public void recuperarUsuarios() {
 		assertEquals(armazenamento.recuperarUsuarios(), Arrays.asList("Zé", "João", "Pedro"));
 	}
-	
+
 	@Test
-	public void recuperarTiposPontuacao() {
-//		assertEquals(armazenamento.recuperarTiposPontuacao("Zé"), Arrays.asList(MOEDA, ESTRELA));
-//		assertEquals(armazenamento.recuperarTiposPontuacao("João"), Arrays.asList(TOPICO));
-//		assertEquals(armazenamento.recuperarTiposPontuacao("Pedro"), Arrays.asList(TOPICO, CURTIDA));
+	public void recuperarTiposPontos() {
+		assertEquals(armazenamento.recuperarTiposPontos("Zé"), Arrays.asList(MOEDA, ESTRELA));
+		assertEquals(armazenamento.recuperarTiposPontos("João"), Arrays.asList(TOPICO));
+		assertEquals(armazenamento.recuperarTiposPontos("Pedro"), Arrays.asList(TOPICO, CURTIDA));
 	}
 }

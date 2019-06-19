@@ -60,4 +60,9 @@ public class Armazenamento {
 		return new ArrayList<>();
 	}
 
+	public Object recuperarTiposPontos(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
