@@ -1,5 +1,9 @@
 package gameficacao;
 
+import static gameficacao.TipoPonto.CURTIDA;
+import static gameficacao.TipoPonto.ESTRELA;
+import static gameficacao.TipoPonto.MOEDA;
+import static gameficacao.TipoPonto.TOPICO;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -7,7 +11,6 @@ import java.util.HashSet;
 
 import org.junit.Before;
 import org.junit.Test;
-import static gameficacao.TipoPonto.*;
 
 public class ArmazenamentoTest {
 
@@ -15,7 +18,7 @@ public class ArmazenamentoTest {
 
 	@Before
 	public void init() {
-		armazenamento = new Armazenamento();
+		armazenamento = new ArmazenamentoImpl();
 		armazenamento.limparArquivo();
 		armazenamento.adicionarPontos(new Pontos("Zé", MOEDA, 10));
 		armazenamento.adicionarPontos(new Pontos("Zé", ESTRELA, 20));
