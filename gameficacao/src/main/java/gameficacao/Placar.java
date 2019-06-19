@@ -2,13 +2,14 @@ package gameficacao;
 
 public class Placar {
 
+	Armazenamento armazenamento;
+	
 	public Placar(Armazenamento armazenamento) {
-		// TODO Auto-generated constructor stub
+		this.armazenamento = armazenamento;
 	}
 
 	public void registrar(Pontos pontos) {
-		// TODO Auto-generated method stub
-		
+		armazenamento.adicionarPontos(pontos);
 	}
 
 }
