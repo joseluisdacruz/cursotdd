@@ -1,5 +1,8 @@
 package gameficacao;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class Placar {
 
 	Armazenamento armazenamento;
@@ -12,9 +15,11 @@ public class Placar {
 		armazenamento.adicionarPontos(pontos);
 	}
 
-	public Object retornarPontosUsuario(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Pontos> retornarPontosUsuario(String usuario) {
+		return armazenamento.recuperarTiposPontos(usuario)
+				.stream()
+				.map(tp -> new Pontos(usuario, tp, armazenamento.recuperarPontos(usuario, tp)))
+				.collect(Collectors.toSet());
 	}
 
 }

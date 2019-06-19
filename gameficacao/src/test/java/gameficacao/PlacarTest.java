@@ -21,7 +21,9 @@ public class PlacarTest {
 	
 	private class ArmazenamentoMock implements Armazenamento {
 
+		private boolean chamouPecuperarPontos = false;
 		private boolean chamouAdicionarPontos = false;
+		private boolean chamouRecuperarTiposPontos = false;
 
 		@Override
 		public void limparArquivo() {
@@ -35,8 +37,11 @@ public class PlacarTest {
 
 		@Override
 		public int recuperarPontos(String usuario, TipoPonto tipo) {
-			// TODO Auto-generated method stub
-			return 0;
+			this.chamouPecuperarPontos = true;
+			if(tipo.equals(ESTRELA)) return 15;
+			if(tipo.equals(TOPICO)) return 10;
+			if(tipo.equals(CURTIDA)) return 10;
+			return 0;			
 		}
 
 		@Override
@@ -47,22 +52,20 @@ public class PlacarTest {
 
 		@Override
 		public Set<TipoPonto> recuperarTiposPontos(String usuario) {
-			// TODO Auto-generated method stub
-			return null;
+			this.chamouRecuperarTiposPontos = true;
+			return new HashSet<>(Arrays.asList(ESTRELA, CURTIDA, TOPICO));
 		}
 
 		public boolean isChamouAdicionarPontos() {
-			return chamouAdicionarPontos;
+			return this.chamouAdicionarPontos;
 		}
 
 		public boolean isChamouRecuperarTiposPontos() {
-			// TODO Auto-generated method stub
-			return false;
+			return this.chamouRecuperarTiposPontos;
 		}
 
 		public boolean isChamouRecuperarPontos() {
-			// TODO Auto-generated method stub
-			return false;
+			return this.chamouPecuperarPontos;
 		}
 		
 	}
