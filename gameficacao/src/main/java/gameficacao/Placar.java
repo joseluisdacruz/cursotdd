@@ -22,7 +22,7 @@ public class Placar {
 				.collect(Collectors.toSet());
 	}
 
-	public Object rank(TipoPonto moeda) {
+	public RankItem[] rank(TipoPonto moeda) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,13 +4,12 @@ import static gameficacao.TipoPonto.CURTIDA;
 import static gameficacao.TipoPonto.ESTRELA;
 import static gameficacao.TipoPonto.MOEDA;
 import static gameficacao.TipoPonto.TOPICO;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
@@ -103,11 +102,8 @@ public class PlacarTest {
 	
 	@Test
 	public void recuperarRank() {
-		Map<String, Integer> rank = new HashMap<>();
-		rank.put("jose", 10);
-		rank.put("joao", 15);
-		rank.put("pedro", 20);
-		assertEquals(rank, this.placar.rank(MOEDA));
+		RankItem[] rank = {new RankItem("pedro", 20), new RankItem("joao", 15), new RankItem("jose", 10)};
+		assertArrayEquals(rank, this.placar.rank(MOEDA));
 		assertTrue(armazenamentoMock.isChamouRecuperarUsuarios());
 		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
 	}
