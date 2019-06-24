@@ -8,6 +8,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,12 +20,15 @@ import org.junit.Test;
 public class ArmazenamentoTest {
 
 	private Armazenamento armazenamento;
-	
+
 	private static final String NOME_ARQUIVO = "./pontos.txt";
-	
+
 	private void limparArquivo(String nomeArquivo) {
+		Path path = Paths.get(nomeArquivo);
 		try {
-			Files.delete(Paths.get(nomeArquivo));
+			if (Files.exists(path)) {
+				Files.delete(path);
+			}
 		} catch (IOException e) {
 			System.err.println("Não foi possível deletar o arquivo.");
 		}
@@ -62,6 +67,7 @@ public class ArmazenamentoTest {
 	public void recuperarTiposPontos() {
 		assertEquals(new HashSet<TipoPonto>(Arrays.asList(MOEDA, ESTRELA)), armazenamento.recuperarTiposPontos("Zé"));
 		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO)), armazenamento.recuperarTiposPontos("João"));
-		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO, CURTIDA)), armazenamento.recuperarTiposPontos("Pedro"));
+		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO, CURTIDA)),
+				armazenamento.recuperarTiposPontos("Pedro"));
 	}
 }

@@ -1,13 +1,16 @@
 package gameficacao;
 
-import static gameficacao.TipoPonto.ESTRELA;
 import static gameficacao.TipoPonto.CURTIDA;
+import static gameficacao.TipoPonto.ESTRELA;
+import static gameficacao.TipoPonto.MOEDA;
 import static gameficacao.TipoPonto.TOPICO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
@@ -24,6 +27,7 @@ public class PlacarTest {
 		private boolean chamouPecuperarPontos = false;
 		private boolean chamouAdicionarPontos = false;
 		private boolean chamouRecuperarTiposPontos = false;
+		private boolean chamouRecuperarUsuarios = false;
 
 		@Override
 		public void adicionarPontos(PontosUsuario pontos) {
@@ -37,13 +41,16 @@ public class PlacarTest {
 			if(tipo.equals(ESTRELA)) return 15;
 			if(tipo.equals(TOPICO)) return 10;
 			if(tipo.equals(CURTIDA)) return 10;
+			if(tipo.equals(MOEDA) && "jose".equals(usuario)) return 10;
+			if(tipo.equals(MOEDA) && "joao".equals(usuario)) return 15;
+			if(tipo.equals(MOEDA) && "pedro".equals(usuario)) return 20;
 			return 0;			
 		}
 
 		@Override
 		public Set<String> recuperarUsuarios() {
-			// TODO Auto-generated method stub
-			return null;
+			this.chamouRecuperarUsuarios = true;
+			return new HashSet<>(Arrays.asList("joao", "pedro", "jose"));
 		}
 
 		@Override
@@ -62,6 +69,10 @@ public class PlacarTest {
 
 		public boolean isChamouRecuperarPontos() {
 			return this.chamouPecuperarPontos;
+		}
+		
+		public boolean isChamouRecuperarUsuarios() {
+			return chamouRecuperarUsuarios;
 		}
 		
 	}
@@ -92,7 +103,13 @@ public class PlacarTest {
 	
 	@Test
 	public void recuperarRank() {
-		
+		Map<String, Integer> rank = new HashMap<>();
+		rank.put("jose", 10);
+		rank.put("joao", 15);
+		rank.put("pedro", 20);
+		assertEquals(rank, this.placar.rank(MOEDA));
+		assertTrue(armazenamentoMock.isChamouRecuperarUsuarios());
+		assertTrue(armazenamentoMock.isChamouRecuperarPontos());
 	}
 
 }

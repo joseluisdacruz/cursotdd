@@ -22,4 +22,9 @@ public class Placar {
 				.collect(Collectors.toSet());
 	}
 
+	public Object rank(TipoPonto moeda) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
