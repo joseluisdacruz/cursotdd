@@ -14,6 +14,8 @@ public class ArmazenamentoArquivo implements Armazenamento {
 
 	private String nomeArquivo = "./db.txt";
 	
+	public ArmazenamentoArquivo() {}
+	
 	public ArmazenamentoArquivo(String nomeArquivo) {
 		this.nomeArquivo = nomeArquivo;
 	}
