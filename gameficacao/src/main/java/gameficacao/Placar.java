@@ -26,6 +26,7 @@ public class Placar {
 		return armazenamento.recuperarUsuarios()
 				.stream()
 				.map(usuario -> new RankItem(usuario, armazenamento.recuperarPontos(usuario, tipoPonto)))
+				.filter(ri -> ri.getPontos() > 0)
 				.sorted((u1, u2) -> u2.getPontos().compareTo(u1.getPontos()))
 				.collect(Collectors.toList()).toArray(new RankItem[0]);
 	}
