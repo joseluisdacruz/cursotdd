@@ -48,7 +48,6 @@ public class ArmazenamentoTest {
 	public void armazenarPontos() {
 		int pontos = armazenamento.recuperarPontos("Zé", MOEDA);
 		assertEquals(10, pontos);
-		;
 	}
 
 	@Test
