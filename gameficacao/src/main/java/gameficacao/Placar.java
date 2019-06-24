@@ -22,9 +22,12 @@ public class Placar {
 				.collect(Collectors.toSet());
 	}
 
-	public RankItem[] rank(TipoPonto moeda) {
-		// TODO Auto-generated method stub
-		return null;
+	public RankItem[] rank(TipoPonto tipoPonto) {
+		return armazenamento.recuperarUsuarios()
+				.stream()
+				.map(usuario -> new RankItem(usuario, armazenamento.recuperarPontos(usuario, tipoPonto)))
+				.sorted((u1, u2) -> u2.getPontos().compareTo(u1.getPontos()))
+				.collect(Collectors.toList()).toArray(new RankItem[0]);
 	}
 
 }
