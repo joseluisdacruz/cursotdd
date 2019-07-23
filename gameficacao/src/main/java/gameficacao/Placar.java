@@ -16,9 +16,10 @@ public class Placar {
 	}
 
 	public Set<Pontos> retornarPontosUsuario(String usuario) {
-		return armazenamento.recuperarTiposPontos(usuario)
+		return armazenamento.recuperarTiposPontos()
 				.stream()
 				.map(tp -> new Pontos(tp, armazenamento.recuperarPontos(usuario, tp)))
+				.filter(p -> p.getQuantidade() > 0)
 				.collect(Collectors.toSet());
 	}
 

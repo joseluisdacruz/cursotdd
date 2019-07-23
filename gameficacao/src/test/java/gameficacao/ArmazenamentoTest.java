@@ -63,9 +63,6 @@ public class ArmazenamentoTest {
 
 	@Test
 	public void recuperarTiposPontos() {
-		assertEquals(new HashSet<TipoPonto>(Arrays.asList(MOEDA, ESTRELA)), armazenamento.recuperarTiposPontos("Zé"));
-		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO)), armazenamento.recuperarTiposPontos("João"));
-		assertEquals(new HashSet<TipoPonto>(Arrays.asList(TOPICO, CURTIDA)),
-				armazenamento.recuperarTiposPontos("Pedro"));
+		assertEquals(new HashSet<TipoPonto>(Arrays.asList(MOEDA, ESTRELA, TOPICO, CURTIDA)), armazenamento.recuperarTiposPontos());
 	}
 }

@@ -52,9 +52,8 @@ public class ArmazenamentoArquivo implements Armazenamento {
 				.collect(Collectors.toSet()));
 	}
 
-	public Set<TipoPonto> recuperarTiposPontos(String usuario) {
+	public Set<TipoPonto> recuperarTiposPontos() {
 		return lerArquivo( s -> s.map(PontosUsuario::parse)
-				.filter(p -> p.getUsuario().equals(usuario))
 				.map(PontosUsuario::getTipoPontuacao)
 				.collect(Collectors.toSet()));
 	}
