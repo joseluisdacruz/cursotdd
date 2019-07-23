@@ -53,7 +53,7 @@ public class PlacarTest {
 		}
 
 		@Override
-		public Set<TipoPonto> recuperarTiposPontos(String usuario) {
+		public Set<TipoPonto> recuperarTiposPontos() {
 			this.chamouRecuperarTiposPontos = true;
 			return new HashSet<>(Arrays.asList(ESTRELA, CURTIDA, TOPICO));
 		}

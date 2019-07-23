@@ -6,5 +6,5 @@ public interface Armazenamento {
 	public void adicionarPontos(PontosUsuario pontos);
 	public int recuperarPontos(String usuario, TipoPonto tipo);
 	public Set<String> recuperarUsuarios();
-	public Set<TipoPonto> recuperarTiposPontos(String usuario);
+	public Set<TipoPonto> recuperarTiposPontos();
 }

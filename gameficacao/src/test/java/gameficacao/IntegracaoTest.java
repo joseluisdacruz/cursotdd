@@ -63,6 +63,27 @@ public class IntegracaoTest {
 	}
 	
 	@Test
+	public void retornarPontuacaoUsuarioEmitirZeradas() {
+		Pontos pontos1 = new Pontos(ESTRELA, 15);
+		Pontos pontos2 = new Pontos(CURTIDA, 10);
+		Pontos pontos3 = new Pontos(TOPICO, 10);
+		Pontos pontos4 = new Pontos(MOEDA, 10);
+		Pontos pontos5 = new Pontos(TOPICO, 20);
+		
+		this.placar.registrar(new PontosUsuario("jose", ESTRELA, 15));
+		this.placar.registrar(new PontosUsuario("jose", CURTIDA, 10));
+		this.placar.registrar(new PontosUsuario("jose", TOPICO, 10));
+		this.placar.registrar(new PontosUsuario("joao", MOEDA, 10));
+		this.placar.registrar(new PontosUsuario("joao", TOPICO, 20));
+		assertEquals(
+				new HashSet<Pontos>(Arrays.asList(pontos1, pontos2, pontos3)),
+				this.placar.retornarPontosUsuario("jose"));
+		assertEquals(
+				new HashSet<Pontos>(Arrays.asList(pontos4, pontos5)),
+				this.placar.retornarPontosUsuario("joao"));
+	}
+	
+	@Test
 	public void recuperarRank() {
 		RankItem[] rank = {new RankItem("pedro", 20), new RankItem("joao", 15), new RankItem("jose", 10)};
 		this.placar.registrar(new PontosUsuario("joao", MOEDA, 15));
