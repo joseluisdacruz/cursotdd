@@ -85,12 +85,16 @@ public class IntegracaoTest {
 	
 	@Test
 	public void recuperarRank() {
-		RankItem[] rank = {new RankItem("pedro", 20), new RankItem("joao", 15), new RankItem("jose", 10)};
+		RankItem[] rank1 = {new RankItem("pedro", 20), new RankItem("joao", 15), new RankItem("jose", 10)};
+		RankItem[] rank2 = {new RankItem("fulano", 5)};
+		RankItem[] rank3 = {new RankItem("maria", 30)};
 		this.placar.registrar(new PontosUsuario("joao", MOEDA, 15));
 		this.placar.registrar(new PontosUsuario("jose", MOEDA, 10));
 		this.placar.registrar(new PontosUsuario("pedro", MOEDA, 20));
 		this.placar.registrar(new PontosUsuario("fulano", CURTIDA,5));
 		this.placar.registrar(new PontosUsuario("maria", ESTRELA, 30));
-		assertArrayEquals(rank, this.placar.rank(MOEDA));
+		assertArrayEquals(rank1, this.placar.rank(MOEDA));
+		assertArrayEquals(rank2, this.placar.rank(CURTIDA));
+		assertArrayEquals(rank3, this.placar.rank(ESTRELA));
 	}
 }
