@@ -11,10 +11,6 @@ public class RankItem {
 		this.pontos = pontos;
 	}
 	
-	public String getUsuario() {
-		return usuario;
-	}
-	
 	public Integer getPontos() {
 		return pontos;
 	}
