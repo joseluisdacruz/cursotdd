@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,38 +36,36 @@ public class ArmazenamentoArquivo implements Armazenamento {
 	}
 
 	public int recuperarPontos(String usuario, TipoPonto tipo) {
-		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
-			return stream.map(PontosUsuario::parse)
+		List<PontosUsuario> listaPontosUsuario = lerArquivo(s -> s.map(PontosUsuario::parse)
 					.filter(p -> p.getTipoPontuacao().equals(tipo) && p.getUsuario().equals(usuario))
-					.mapToInt(PontosUsuario::getPontos).sum();
-		} catch (IOException e) {
-			System.err.println("Erro ao ler o arquivo");
+					.collect(Collectors.toList()));
+		if(listaPontosUsuario != null) {
+			return listaPontosUsuario.stream().mapToInt(PontosUsuario::getPontos).sum();
 		}
 		return 0;
 	}
 
 	public Set<String> recuperarUsuarios() {
-		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
-			return stream.map(PontosUsuario::parse)
-					.map(PontosUsuario::getUsuario)
-					.distinct()
-					.collect(Collectors.toSet());
-		} catch (IOException e) {
-			System.err.println("Erro ao ler o arquivo");
-		}
-		return new HashSet<>();
+		return lerArquivo(s -> s.map(PontosUsuario::parse)
+				.map(PontosUsuario::getUsuario)
+				.distinct()
+				.collect(Collectors.toSet()));
 	}
 
 	public Set<TipoPonto> recuperarTiposPontos(String usuario) {
+		return lerArquivo( s -> s.map(PontosUsuario::parse)
+				.filter(p -> p.getUsuario().equals(usuario))
+				.map(PontosUsuario::getTipoPontuacao)
+				.collect(Collectors.toSet()));
+	}
+	
+	private <T, C extends Collection<T>> C lerArquivo(Function<Stream<String>, C> callback) {
 		try (Stream<String> stream = Files.lines(Paths.get(nomeArquivo))) {
-			return stream.map(PontosUsuario::parse)
-					.filter(p -> p.getUsuario().equals(usuario))
-					.map(PontosUsuario::getTipoPontuacao)
-					.collect(Collectors.toSet());
+			return callback.apply(stream);
 		} catch (IOException e) {
 			System.err.println("Erro ao ler o arquivo");
 		}
-		return new HashSet<>();
+		return null;
 	}
 
 }
